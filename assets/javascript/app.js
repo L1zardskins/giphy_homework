@@ -4,6 +4,7 @@ var apiKey = "rda163IGyo50t6t4bTTnXgkSvmQCZfXb";
 var addGifs = 0;
 var giphy = "";
 var giphyResult = []
+var favGif = []
 // var url = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"
 
 //Click Event
@@ -64,6 +65,7 @@ function getResults(category) {
             var card = $("<div>");
             card.attr("class", "card");
             card.attr("id", "card-" + i);
+            //card.attr("data-index", response.index(this));
             card.attr("style", "width: 12rem;");
             //<img class="card-img-top" src="" alt="">
             var gifImage = $("<img>");
@@ -85,11 +87,11 @@ function getResults(category) {
             var cP2 = $("<p>");
             cP2.text("Rating: " + response.data[i].rating);
 
-            var cButton = $("<a>");
-            cButton.attr("href", imageUrl);
-            cButton.attr("download", "giffy" + i + "." + response.data[i].type)
-            cButton.attr("class", "btn btn-dark");
-            cButton.text("Download");
+            // var cButton = $("<a>");
+            // cButton.attr("href", imageUrl);
+            // cButton.attr("download", "giffy" + i + "." + response.data[i].type)
+            // cButton.attr("class", "btn btn-dark");
+            // cButton.text("Download");
 
             //prepend image to the images id
             $(".results-col").append(card);
@@ -97,7 +99,8 @@ function getResults(category) {
             $("#card-" + i).append(cBody);
             $("#card-body-" + i).append(cP);
             $("#card-body-" + i).append(cP2);
-            $("#card-body-" + i).append(cButton);
+            //$("#card-body-" + i).append(cButton);
+            addGifs++
         };
 
     });
@@ -106,10 +109,10 @@ function getResults(category) {
 
 function addMore() {
 
-    var endingCount = addGifs += 10;
+    //var endingCount = addGifs += 10;
     console.log(giphyResult.data[addGifs].images.original.url);
     var j = addGifs;
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
         // $("#movie-view").text(JSON.stringify(response));
 
         var imageUrl = giphyResult.data[j].images.original_still.url;
@@ -138,11 +141,11 @@ function addMore() {
         var cP2 = $("<p>");
         cP2.text("Rating: " + giphyResult.data[j].rating)
 
-        var cButton = $("<a>");
-        cButton.attr("href", "#");
-        cButton.attr("class", "btn btn-dark");
-        cButton.text("Download");
-        console.log(card);
+        // var cButton = $("<a>");
+        // cButton.attr("href", "#");
+        // cButton.attr("class", "btn btn-dark");
+        // cButton.text("Download");
+        // console.log(card);
 
         //prepend image to the images id
         $(".results-col").append(card);
@@ -150,29 +153,34 @@ function addMore() {
         $("#card-" + j).append(cBody);
         $("#card-body-" + j).append(cP);
         $("#card-body-" + j).append(cP2);
-        $("#card-body-" + j).append(cButton);
+        //$("#card-body-" + j).append(cButton);
 
         j++;
+        addGifs++
     };
 
-    addGifs = endingCount
+    //addGifs = endingCount
 
 
 
 };
 
 function animateGif() {
-
-    var state = $("img").attr("data-state")
-    console.log(state)
+    //console.log($(this).attr("id"));
+    var state = $(this).attr("data-state");
+    //console.log(state);
 
     if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
-        //console.log($(this).attr("id"))
+        //$(this).data("state", "animate");
+        console.log("True");
+        //console.log($(this).attr("alt"))
     } else {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
+        //$(this).data("state", "still");
+        console.log("False");
     }
 
 };
