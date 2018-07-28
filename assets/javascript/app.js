@@ -49,7 +49,7 @@ function getResults(category) {
     addGifs = 0;
     rating = "r"
     giphy = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=" + apiKey + "&limit=50";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=" + apiKey + "&limit=50";
     console.log(queryURL)
 
     $.ajax({
